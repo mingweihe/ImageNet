@@ -44,7 +44,7 @@ if __name__=='__main__':
     map_file=sys.argv[1]
     xml_folder=sys.argv[2]
     output_folder=sys.argv[3]
-    isCreatePfolder=sys.argv[4]
+    isCreatePfolder=int(sys.argv[4])
 
     one_lalel=pd.DataFrame
     # map_file='../../backup/LOC_synset_mapping.txt'
