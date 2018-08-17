@@ -1,3 +1,5 @@
+import warnings
+warnings.filterwarnings("ignore")
 from xml.dom import minidom
 import pandas as pd
 import os
