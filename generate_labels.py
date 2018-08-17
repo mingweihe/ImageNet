@@ -44,13 +44,13 @@ if __name__=='__main__':
     output_folder=sys.argv[3]
 
     one_lalel=pd.DataFrame
-    map_file='../../backup/LOC_synset_mapping.txt'
+    # map_file='../../backup/LOC_synset_mapping.txt'
     df=pd.read_csv(map_file, sep='\t', header=None)
     df[1]=df[0].str[10:]
     df[0]=df[0].str[0:9]
 
-    xml_folder='../../backup/ILSVRC/Annotations/CLS-LOC/train'
-    output_folder='labels'
+    # xml_folder='../../backup/ILSVRC/Annotations/CLS-LOC/train'
+    # output_folder='labels'
     for target, dirs, files in os.walk(xml_folder):
         for file in files:
             if file.endswith(".xml"):
