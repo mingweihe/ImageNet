@@ -7,7 +7,7 @@ from os.path import basename
 import pathlib
 import sys
 
-def xmlToTxt(xml_path, target_forder):
+def xmlToTxt(xml_path, target_forder, isCreatePfolder):
     mydoc=minidom.parse(xml_path)
 #     folder=mydoc.getElementsByTagName('folder')[0].firstChild.data
 #     filername=mydoc.getElementsByTagName('filename')[0].firstChild.data
@@ -16,7 +16,9 @@ def xmlToTxt(xml_path, target_forder):
     width=float(mydoc.getElementsByTagName('width')[0].firstChild.data)
     height=float(mydoc.getElementsByTagName('height')[0].firstChild.data)
     objects=mydoc.getElementsByTagName('object')
-    to_save = os.path.join(target_forder, folder)
+    to_save=target_forder
+    if(isCreatePfolder):
+        to_save = os.path.join(target_forder, folder)
     pathlib.Path(to_save).mkdir(parents=True, exist_ok=True)
     with open(os.path.join(to_save, filername+'.txt'), 'a') as the_file:
         for obj in objects:
@@ -35,13 +37,14 @@ def xmlToTxt(xml_path, target_forder):
             ' '+str(round(h/height,5))+'\n')
 
 if __name__=='__main__':
-    if(len(sys.argv)<4):
-        print('Usage: python', sys.argv[0], '[map_file]', '[xml_folder]', '[output_folder]')
+    if(len(sys.argv)<5):
+        print('Usage: python', sys.argv[0], '[map_file]', '[xml_folder]', '[output_folder]', '[isCreatePfolder]')
         sys.exit(1)
 
     map_file=sys.argv[1]
     xml_folder=sys.argv[2]
     output_folder=sys.argv[3]
+    isCreatePfolder=sys.argv[4]
 
     one_lalel=pd.DataFrame
     # map_file='../../backup/LOC_synset_mapping.txt'
@@ -54,4 +57,4 @@ if __name__=='__main__':
     for target, dirs, files in os.walk(xml_folder):
         for file in files:
             if file.endswith(".xml"):
-                xmlToTxt(os.path.join(target, file), output_folder)
+                xmlToTxt(os.path.join(target, file), output_folder, isCreatePfolder)
