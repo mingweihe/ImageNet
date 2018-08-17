@@ -1,1 +1,1 @@
-# Trial-on-kaggle-imagenet-object-localization-by-yolov3-in-google-cloud
+# Trial on kaggle imagenet object localization by yolov3 in google cloud
