@@ -1,1 +1,1 @@
-# Kaggle imagenet object localization by yolov3 in google cloud
+# ImageNet object localization
