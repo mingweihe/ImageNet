@@ -98,16 +98,16 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 #:pip3 install pandas<br>
 #:pip3 install pathlib<br>
 #:cd ImageNet<br>
-// generating all training formatted labels files costs about 20 minutes<br>
+// generating all training formatted label files costs about 20 minutes<br>
 #:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/train ../ILSVRC/Data/CLS-LOC/train/labels 1<br>
-// generating all validation formatted labels<br>
+// generating all validation formatted label files<br>
 #:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/val ../ILSVRC/Data/CLS-LOC/val/labels 0<br>
 #:cd ~<br>
 #:find `pwd`/ILSVRC/Data/CLS-LOC/train/labels/ -name \*.txt > darknet/data/inet.train.list<br>
 #:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.train.list<br>
 #:sed -i 's/labels/images/g' darknet/data/inet.train.list<br>
 
-#:find `pwd`/ILSVRC/Data/CLS-LOC/val/labels/ -name \*.txt > darknet/data/inet.val.list<br>
+&#35;:find `pwd`/ILSVRC/Data/CLS-LOC/val/labels/ -name \*.txt > darknet/data/inet.val.list<br>
 #:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.val.list<br>
 #:sed -i 's/labels/images/g' darknet/data/inet.val.list<br>
 <h4>II.pretrained weights preparation.</h4>
