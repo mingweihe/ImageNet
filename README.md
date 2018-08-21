@@ -67,7 +67,11 @@ Maybe the external ip changed after restart, but way to connect it is same as be
 // Actually we've done a good job until now, but we still can't see expected result if we won't change Makefile a little bit,<br>
 // I haven't figured out the reason, although let's just change it now. <br>
 #:cd darknet
-#:sed -i 's/CUDNN=1/CUDNN=0/g' Makefile<br>
+#:sed -i 's/GPU=./GPU=1/' Makefile<br>
+#:sed -i 's/CUDNN=./CUDNN=0/' Makefile<br>
+#:sed -i 's/OPENCV=./OPENCV=1/' Makefile<br>
+#:sed -i 's/OPENMP=./OPENMP=1/' Makefile<br>
+#:sed -i 's/DEBUG=./DEBUG=0/' Makefile<br>
 #:make<br>
 #:wget https://pjreddie.com/media/files/yolov3.weights<br>
 #:./darknet detector test cfg/coco.data cfg/yolov3.cfg yolov3.weights data/dog.jpg<br>
