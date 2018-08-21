@@ -28,7 +28,7 @@ we can also connect by 'FileZilla', no more words here.<br>
 <h4>VI.kaggle-cli installation</h4>
 #:pip install kaggle-cli<br>
 <h2>2.dataset download</h2>
-#:kg download -u &lt;username&gt; -p &lt;password&gt; -c imagenet-object-localization-challenge<br>
+#:kg download -u &lt;your kaggle username&gt; -p &lt;your kaggle password&gt; -c imagenet-object-localization-challenge<br>
 // dataset is about 160G, so it will cost about 1 hour if your instance download speed is around 42.9 MiB/s.<br>
 // let's open another ssh connection, same terminal command, with (step 1->IV->last command)<br>
 <h2>3.opencv-3.4.0 installation(we will turn on opencv option in yolo project later for better image processing)</h2>
