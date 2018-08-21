@@ -34,7 +34,7 @@ http://www.python36.com/how-to-install-opencv340-on-ubuntu1604/<br>
 <h2>4.cuda 9.0 with cudnn 7.0 installation</h2>
 we can use the fallowing bash script, download it and execute it in instance.<br>
 https://gist.github.com/ashokpant/5c4e9481615f54af4025ab2085f85869#file-cuda_9-0_cudnn_7-0-sh<br>
-5.cudnn library configuration<br>
+<h2>5.cudnn library configuration</h2>
 go to https://developer.nvidia.com/rdp/cudnn-download to download cuDNN v7.0.5 Library for Linux CUDA 9.0<br>
 it's name should be cudnn-9.0-linux-x64-v7.tgz, we use scp command or filezilla to move this package from local machine to remote instance.<br>
 #:scp -i ~/.ssh/gc_rsa Downloads/cudnn-9.0-linux-x64-v7.tgz anynamehere@your google cloud external ip:~/<br>
@@ -46,27 +46,27 @@ it's name should be cudnn-9.0-linux-x64-v7.tgz, we use scp command or filezilla 
 #:echo 'export PATH=/usr/local/cuda-9.0/bin:$PATH' >> ~/.bashrc<br>
 #:echo 'export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/:$LD_LIBRARY_PATH' >> ~/.bashrc<br>
 #:source ~/.bashrc<br>
-6.Add 1 piece of K80 GPU we applied before on our instance when it's power off, then start it.<br>
+<h2>6.Add 1 piece of K80 GPU we applied before on our instance when it's power off, then start it.</h2>
 Maybe the external ip changed after restart, but way to connect it is same as before.<br>
-7.Yolo installation<br>
+<h2>7.Yolo installation</h2>
 #:git clone https://github.com/pjreddie/darknet<br>
 #:cd darknet<br>
 #:make<br>
-8.X11 installatoin both of instance and our local machine, so that we can see our predicted image remotely.<br>
+<h2>8.X11 installatoin both of instance and our local machine, so that we can see our predicted image remotely.</h2>
 #:sudo apt-get install xorg openbox<br>
 // what I need on my mac is XQuartz.<br>
 // install feh, so that we can see any picture remotely.<br>
 #:sudo apt install feh<br>
 // test it<br>
 #:feh predictions.jpg<br>
-9.test yolov3<br>
+<h2>9.test yolov3</h2>
 // Actually we've done a good job until now, but we still can't see expected result if we won't change Makefile a little bit,<br>
 // I haven't figured out the reason, although let's just change it now. <br>
 #:sed -i 's/CUDNN=1/CUDNN=0/g' Makefile<br>
 #:make<br>
 #:wget https://pjreddie.com/media/files/yolov3.weights<br>
 #:./darknet detector test cfg/coco.data cfg/yolov3.cfg yolov3.weights data/dog.jpg<br>
-10.Now let's come to the main part - train yolo on kaggle imagenet object localization<br>
+<h2>10.Now let's come to the main part - train yolo on kaggle imagenet object localization</h2>
 I.training data preprocessing.<br>
 #:cd ~<br>
 #:tar zxvf imagenet_object_localization.tar.gz<br>
@@ -108,10 +108,10 @@ V.Traininguse with multiple GPUs<br>
 VI.<br>
 VII.<br>
 VIII.<br>
-11.Prediction<br>
+<h2>11.Prediction</h2>
 #:<br>
-12.transfer predcitions to CSV file.<br>
-13.submit our predictions.<br>
+<h2>12.transfer predcitions to CSV file.</h2>
+<h2>13.submit our predictions.</h2>
 Good luck and thanks for your attention.<br>
 
 
