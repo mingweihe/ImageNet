@@ -20,6 +20,7 @@ then go to google cloud, copy everything in gc_rsa.pub to ubuntu instance SSH ke
 #:ssh -i gc_rsa anynamehere@your google cloud external ip<br>
 we can also connect by 'FileZilla', no more words here.<br>
 <h4>V.pip installation</h4>
+#:sudo apt update
 #:sudo apt-get -y install python-pip<br>
 #:sudo apt-get -y install python3-pip<br>
 <h4>VI.kaggle-cli installation</h4>
@@ -67,7 +68,7 @@ Maybe the external ip changed after restart, but way to connect it is same as be
 #:wget https://pjreddie.com/media/files/yolov3.weights<br>
 #:./darknet detector test cfg/coco.data cfg/yolov3.cfg yolov3.weights data/dog.jpg<br>
 <h2>10.Now let's come to the main part - train yolo on kaggle imagenet object localization</h2>
-I.training data preprocessing.<br>
+<h4>I.training data preprocessing.</h4>
 #:cd ~<br>
 #:tar zxvf imagenet_object_localization.tar.gz<br>
 #:unzip LOC_synset_mapping.txt.zip<br>
@@ -90,24 +91,24 @@ I.training data preprocessing.<br>
 #:find `pwd`/ILSVRC/Data/CLS-LOC/val/labels/ -name \*.txt > darknet/data/inet.val.list<br>
 #:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.val.list<br>
 #:sed -i 's/labels/images/g' darknet/data/inet.val.list<br>
-II.pretrained weights preparation.<br>
+<h4>II.pretrained weights preparation.</h4>
 #:cd darknet<br>
 #:wget https://pjreddie.com/media/files/darknet53.conv.74<br>
-III.cfg files preparation<br>
+<h4>III.cfg files preparation</h4>
 #:cp ~/ImageNet/yolov3-ILSVRC.cfg cfg/<br>
 #:cp ~/ImageNet/ILSVRC.data cfg/<br>
-IV.Traning<br>
+<h4>IV.Traning</h4>
 #:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74<br>
 // we can also restart training from a checkpoint:<br>
 #:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg backup/yolov3.backup<br>
-V.Traininguse with multiple GPUs<br>
+<h4>V.Traininguse with multiple GPUs</h4>
 // shutdown instance, configure GPU from 1 piece of K80 to 4 piece of P100, with 8 CPUs.<br>
 // boot instance, start training using following command<br>
 #:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74 -gpus 0,1,2,3<br>
 // continue from checkpoints we can replace darknet53.conv.74 with backup file.<br>
-VI.<br>
-VII.<br>
-VIII.<br>
+<h4>VI.</h4>
+<h4>VII.</h4>
+<h4>VIII.</h4>
 <h2>11.Prediction</h2>
 #:<br>
 <h2>12.transfer predcitions to CSV file.</h2>
