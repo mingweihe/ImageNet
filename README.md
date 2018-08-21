@@ -83,8 +83,11 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 <h4>I.training data preprocessing.</h4>
 #:cd ~<br>
 #:tar zxvf imagenet_object_localization.tar.gz<br>
-// delete package so that we'll have enough disk space.
-#:rm imagenet_object_localization.tar.gz
+// delete package so that we'll have enough disk space.<br>
+#:rm imagenet_object_localization.tar.gz<br>
+// view disk space info.<br>
+#: df -h<br>
+// Data preparation<br>
 #:unzip LOC_synset_mapping.txt.zip<br>
 #:mkdir ILSVRC/Data/CLS-LOC/train/images<br>
 #:mv ILSVRC/Data/CLS-LOC/train/n* ILSVRC/Data/CLS-LOC/train/images/<br>
