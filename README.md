@@ -24,14 +24,14 @@ V.pip installation<br>
 #:sudo apt-get -y install python3-pip<br>
 VI.kaggle-cli installation<br>
 #:pip install kaggle-cli<br>
-2.dataset download<br>
+<h2>2.dataset download</h2>
 #:kg download -u <username> -p <password> -c imagenet-object-localization-challenge<br>
 // dataset is about 160G, so it will cost about 1 hour if your instance download speed is around 42.9 MiB/s.<br>
 // let's open another ssh connection, same terminal command, with (step 1->IV->last command)<br>
-3.opencv-3.4.0 installation(we will turn on opencv option in yolo project later for better image processing)<br>
+<h2>3.opencv-3.4.0 installation(we will turn on opencv option in yolo project later for better image processing)</h2>
 execute all the steps in the following url.<br>
 http://www.python36.com/how-to-install-opencv340-on-ubuntu1604/<br>
-4.cuda 9.0 with cudnn 7.0 installation<br>
+<h2>4.cuda 9.0 with cudnn 7.0 installation</h2>
 we can use the fallowing bash script, download it and execute it in instance.<br>
 https://gist.github.com/ashokpant/5c4e9481615f54af4025ab2085f85869#file-cuda_9-0_cudnn_7-0-sh<br>
 5.cudnn library configuration<br>
