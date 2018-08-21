@@ -21,7 +21,7 @@ then go to google cloud, copy everything in gc_rsa.pub to ubuntu instance SSH ke
 #:ssh -i gc_rsa anynamehere@your google cloud external ip<br>
 we can also connect by 'FileZilla', no more words here.<br>
 <h4>V.pip installation</h4>
-#:sudo apt update
+#:sudo apt update<br>
 #:sudo apt-get -y install python-pip<br>
 #:sudo apt-get -y install python3-pip<br>
 <h4>VI.kaggle-cli installation</h4>
