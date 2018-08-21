@@ -74,45 +74,45 @@ I.training data preprocessing.<br>
 #:mkdir ILSVRC/Data/CLS-LOC/train/images<br>
 #:mv ILSVRC/Data/CLS-LOC/train/n* ILSVRC/Data/CLS-LOC/train/images/<br>
 #:mv ILSVRC/Data/CLS-LOC/val/ ILSVRC/Data/CLS-LOC/images<br>
-#:mkdir ILSVRC/Data/CLS-LOC/val/
-#:mv ILSVRC/Data/CLS-LOC/images ILSVRC/Data/CLS-LOC/val/images
-#:git pull https://github.com/mingweihe/ImageNet
-#:pip3 install pandas
-#:pip3 install pathlib
-#:cd ImageNet
-#:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/train ../ILSVRC/Data/CLS-LOC/train/labels 1
-#:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/val ../ILSVRC/Data/CLS-LOC/val/labels 0
-#:cd ~
-#:find `pwd`/ILSVRC/Data/CLS-LOC/train/labels/ -name \*.txt > darknet/data/inet.train.list
-#:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.train.list
-#:sed -i 's/labels/images/g' darknet/data/inet.train.list
+#:mkdir ILSVRC/Data/CLS-LOC/val/<br>
+#:mv ILSVRC/Data/CLS-LOC/images ILSVRC/Data/CLS-LOC/val/images<br>
+#:git pull https://github.com/mingweihe/ImageNet<br>
+#:pip3 install pandas<br>
+#:pip3 install pathlib<br>
+#:cd ImageNet<br>
+#:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/train ../ILSVRC/Data/CLS-LOC/train/labels 1<br>
+#:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/val ../ILSVRC/Data/CLS-LOC/val/labels 0<br>
+#:cd ~<br>
+#:find `pwd`/ILSVRC/Data/CLS-LOC/train/labels/ -name \*.txt > darknet/data/inet.train.list<br>
+#:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.train.list<br>
+#:sed -i 's/labels/images/g' darknet/data/inet.train.list<br>
 
-#:find `pwd`/ILSVRC/Data/CLS-LOC/val/labels/ -name \*.txt > darknet/data/inet.val.list
-#:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.val.list
-#:sed -i 's/labels/images/g' darknet/data/inet.val.list
-II.pretrained weights preparation.
-#:cd darknet
-#:wget https://pjreddie.com/media/files/darknet53.conv.74
-III.cfg files preparation
-#:cp ~/ImageNet/yolov3-ILSVRC.cfg cfg/
-#:cp ~/ImageNet/ILSVRC.data cfg/
-IV.Traning
-#:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74
-// we can also restart training from a checkpoint:
-#:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg backup/yolov3.backup
-V.Traininguse with multiple GPUs
-// shutdown instance, configure GPU from 1 piece of K80 to 4 piece of P100, with 8 CPUs.
-// boot instance, start training using following command
-#:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74 -gpus 0,1,2,3
-// continue from checkpoints we can replace darknet53.conv.74 with backup file.
-VI.
-VII.
-VIII.
-11.Prediction
-#:
-12.transfer predcitions to CSV file.
-13.submit our predictions.
-Good luck and thanks for your attention.
+#:find `pwd`/ILSVRC/Data/CLS-LOC/val/labels/ -name \*.txt > darknet/data/inet.val.list<br>
+#:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.val.list<br>
+#:sed -i 's/labels/images/g' darknet/data/inet.val.list<br>
+II.pretrained weights preparation.<br>
+#:cd darknet<br>
+#:wget https://pjreddie.com/media/files/darknet53.conv.74<br>
+III.cfg files preparation<br>
+#:cp ~/ImageNet/yolov3-ILSVRC.cfg cfg/<br>
+#:cp ~/ImageNet/ILSVRC.data cfg/<br>
+IV.Traning<br>
+#:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74<br>
+// we can also restart training from a checkpoint:<br>
+#:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg backup/yolov3.backup<br>
+V.Traininguse with multiple GPUs<br>
+// shutdown instance, configure GPU from 1 piece of K80 to 4 piece of P100, with 8 CPUs.<br>
+// boot instance, start training using following command<br>
+#:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74 -gpus 0,1,2,3<br>
+// continue from checkpoints we can replace darknet53.conv.74 with backup file.<br>
+VI.<br>
+VII.<br>
+VIII.<br>
+11.Prediction<br>
+#:<br>
+12.transfer predcitions to CSV file.<br>
+13.submit our predictions.<br>
+Good luck and thanks for your attention.<br>
 
 
 
