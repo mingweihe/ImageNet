@@ -5,7 +5,8 @@ nice yolo explanation:https://medium.com/@jonathan_hui/real-time-object-detectio
 My operation system is Mac OS, although it doesn't matter much, because we do most steps on google cloud.<br>
 Let's do it step by step:<br>
 <h2>1.basic environment preparation:</h2>
-<h4>I.Apply a google cloud account, we can have a $300 credit acount if it's out first time to do it.</h4>
+<h4>I.Apply a google cloud account.</h4>
+ps:Google provide $300 credit trial time for first time sign up account.
 <h4>II.Create a ubuntu 16.04 compute engine instance on google cloud, with 500G SSD disk, 4 cores' cpu and, 15G memories. </h4>
 we will change it a little bit later coz GPU/CPU extention or other reasons, but now it's enough.<br>
 <h4>III.Apply quotas increasing on Nvidia tesla K80/P100/V100, coz we don't have permission to use gpu default. </h4>
