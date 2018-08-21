@@ -7,7 +7,7 @@ Let's do it step by step:<br>
 <h2>1.basic environment preparation:</h2>
 <h4>I.Apply a google cloud account.</h4>
 ps:Google provide $300 credit trial time for first time sign up account.
-<h4>II.Create a ubuntu 16.04 compute engine instance on google cloud, with 450G SSD disk, 4 cores' cpu and, 15G memories. </h4>
+<h4>II.Create a ubuntu 16.04 compute engine instance on google cloud, with 400G SSD disk, 4 cores' cpu and, 15G memories. </h4>
 we will change it a little bit later coz GPU/CPU extention or other reasons, but now it's enough.<br>
 <h4>III.Apply quotas increasing on Nvidia tesla K80/P100/V100, coz we don't have permission to use gpu default. </h4>
 GPUs cost credit so fast, so we can choose it by needed. For me, I just increase 1 K80s for test, 4 P100s for training our model, haven't tried on V100 yet.<br>
@@ -79,6 +79,8 @@ Maybe the external ip changed after restart, but way to connect it is same as be
 <h4>I.training data preprocessing.</h4>
 #:cd ~<br>
 #:tar zxvf imagenet_object_localization.tar.gz<br>
+// delete package so that we'll have enough disk space.
+#:rm imagenet_object_localization.tar.gz
 #:unzip LOC_synset_mapping.txt.zip<br>
 #:mkdir ILSVRC/Data/CLS-LOC/train/images<br>
 #:mv ILSVRC/Data/CLS-LOC/train/n* ILSVRC/Data/CLS-LOC/train/images/<br>
