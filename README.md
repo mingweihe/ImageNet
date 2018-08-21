@@ -50,7 +50,11 @@ it's name should be cudnn-9.0-linux-x64-v7.tgz, we use scp command or filezilla 
 #:echo 'export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/:$LD_LIBRARY_PATH' >> ~/.bashrc<br>
 #:source ~/.bashrc<br>
 <h2>6.Shutdown instance, add 1 piece of K80 GPU, then boot instance again.</h2>
-ps:For frugality, we can revise number of cpu cores from 4 to 2
+ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
+// view GPUs detailed info<br>
+#: nvidia-smi<br>
+// view the number of CPUs<br>
+#:nproc<br>
 <h2>7.X11 installatoin both of instance and our local machine, so that we can see our predicted image remotely.</h2>
 #:sudo apt-get install xorg openbox<br>
 // what I need on my mac is XQuartz.<br>
