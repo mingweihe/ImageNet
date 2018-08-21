@@ -94,7 +94,7 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 #:mv ILSVRC/Data/CLS-LOC/val/ ILSVRC/Data/CLS-LOC/images<br>
 #:mkdir ILSVRC/Data/CLS-LOC/val/<br>
 #:mv ILSVRC/Data/CLS-LOC/images ILSVRC/Data/CLS-LOC/val/images<br>
-#:git pull https://github.com/mingweihe/ImageNet<br>
+#:git clone https://github.com/mingweihe/ImageNet<br>
 #:pip3 install pandas<br>
 #:pip3 install pathlib<br>
 #:cd ImageNet<br>
