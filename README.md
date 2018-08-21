@@ -98,7 +98,9 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 #:pip3 install pandas<br>
 #:pip3 install pathlib<br>
 #:cd ImageNet<br>
+// generating all training formatted labels files costs about 20 minutes<br>
 #:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/train ../ILSVRC/Data/CLS-LOC/train/labels 1<br>
+// generating all validation formatted labels<br>
 #:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/val ../ILSVRC/Data/CLS-LOC/val/labels 0<br>
 #:cd ~<br>
 #:find `pwd`/ILSVRC/Data/CLS-LOC/train/labels/ -name \*.txt > darknet/data/inet.train.list<br>
