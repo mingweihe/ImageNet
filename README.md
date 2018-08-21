@@ -60,11 +60,13 @@ Maybe the external ip changed after restart, but way to connect it is same as be
 // what I need on my mac is XQuartz.<br>
 // install feh, so that we can see any picture remotely.<br>
 #:sudo apt install feh<br>
-// test it<br>
-#:feh predictions.jpg<br>
+// logout from instance, connect it with additional parameter, then test it<br>
+#ssh -Y -i ~/.ssh/gc_rsa anynamehere@your google cloud external ip
+#:feh darknet/data/dog.jpg<br>
 <h2>9.test yolov3</h2>
 // Actually we've done a good job until now, but we still can't see expected result if we won't change Makefile a little bit,<br>
 // I haven't figured out the reason, although let's just change it now. <br>
+#:cd darknet
 #:sed -i 's/CUDNN=1/CUDNN=0/g' Makefile<br>
 #:make<br>
 #:wget https://pjreddie.com/media/files/yolov3.weights<br>
