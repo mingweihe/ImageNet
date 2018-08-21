@@ -49,8 +49,8 @@ it's name should be cudnn-9.0-linux-x64-v7.tgz, we use scp command or filezilla 
 #:echo 'export PATH=/usr/local/cuda-9.0/bin:$PATH' >> ~/.bashrc<br>
 #:echo 'export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/:$LD_LIBRARY_PATH' >> ~/.bashrc<br>
 #:source ~/.bashrc<br>
-<h2>6.Add 1 piece of K80 GPU we applied before on our instance when it's power off, then start it.</h2>
-Maybe the external ip changed after restart, but way to connect it is same as before.<br>
+<h2>6.Shutdown instance, add 1 piece of K80 GPU, then boot instance again.</h2>
+ps:For frugality, we can revise number of cpu cores from 4 to 2
 <h2>7.Yolo installation</h2>
 #:git clone https://github.com/pjreddie/darknet<br>
 #:cd darknet<br>
