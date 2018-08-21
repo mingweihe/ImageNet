@@ -51,11 +51,7 @@ it's name should be cudnn-9.0-linux-x64-v7.tgz, we use scp command or filezilla 
 #:source ~/.bashrc<br>
 <h2>6.Shutdown instance, add 1 piece of K80 GPU, then boot instance again.</h2>
 ps:For frugality, we can revise number of cpu cores from 4 to 2
-<h2>7.Yolo installation</h2>
-#:git clone https://github.com/pjreddie/darknet<br>
-#:cd darknet<br>
-#:make<br>
-<h2>8.X11 installatoin both of instance and our local machine, so that we can see our predicted image remotely.</h2>
+<h2>7.X11 installatoin both of instance and our local machine, so that we can see our predicted image remotely.</h2>
 #:sudo apt-get install xorg openbox<br>
 // what I need on my mac is XQuartz.<br>
 // install feh, so that we can see any picture remotely.<br>
@@ -63,10 +59,14 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2
 // logout from instance, connect it with additional parameter, then test it<br>
 #ssh -Y -i ~/.ssh/gc_rsa anynamehere@your google cloud external ip
 #:feh darknet/data/dog.jpg<br>
+<h2>8.Yolo installation</h2>
+#:git clone https://github.com/pjreddie/darknet<br>
+#:cd darknet<br>
+#:make<br>
 <h2>9.test yolov3</h2>
 // Actually we've done a good job until now, but we still can't see expected result if we won't change Makefile a little bit,<br>
 // I haven't figured out the reason, although let's just change it now. <br>
-#:cd darknet
+#:cd darknet<br>
 #:sed -i 's/GPU=./GPU=1/' Makefile<br>
 #:sed -i 's/CUDNN=./CUDNN=0/' Makefile<br>
 #:sed -i 's/OPENCV=./OPENCV=1/' Makefile<br>
