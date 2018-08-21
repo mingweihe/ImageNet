@@ -106,7 +106,6 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 &#35;:find `pwd`/ILSVRC/Data/CLS-LOC/train/labels/ -name \*.txt > darknet/data/inet.train.list<br>
 &#35;:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.train.list<br>
 &#35;:sed -i 's/labels/images/g' darknet/data/inet.train.list<br>
-
 &#35;:find `pwd`/ILSVRC/Data/CLS-LOC/val/labels/ -name \*.txt > darknet/data/inet.val.list<br>
 &#35;:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.val.list<br>
 &#35;:sed -i 's/labels/images/g' darknet/data/inet.val.list<br>
