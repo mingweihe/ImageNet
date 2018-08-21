@@ -12,23 +12,23 @@ we will change it a little bit later coz GPU/CPU extention or other reasons, but
 <h4>III.Apply quotas increasing on Nvidia tesla K80/P100/V100, coz we don't have permission to use gpu default. </h4>
 GPUs cost credit so fast, so we can choose it by needed. For me, I just increase 1 K80s for test, 4 P100s for training our model, haven't tried on V100 yet.<br>
 <h4>IV.SSH connection by RSA keys.</h4>
-#:ssh-keygen -t rsa -f ~/.ssh/gc_rsa -C anynamehere<br>
+&#35;:ssh-keygen -t rsa -f ~/.ssh/gc_rsa -C anynamehere<br>
 No pass word is easy for login.<br>
-#:cd ~/.ssh<br>
-#:vi gc_rsa.pub<br>
+&#35;:cd ~/.ssh<br>
+&#35;:vi gc_rsa.pub<br>
 then go to google cloud, copy everything in gc_rsa.pub to ubuntu instance SSH key part.<br>
-#:chmod 400 gc_rsa<br>
-#:ssh -i gc_rsa anynamehere@your google cloud external ip<br>
+&#35;:chmod 400 gc_rsa<br>
+&#35;:ssh -i gc_rsa anynamehere@your google cloud external ip<br>
 we can also connect by 'FileZilla', no more words here.<br>
 <h4>V.pip installation</h4>
-#:sudo apt update<br>
-#:sudo apt upgrade<br>
-#:sudo apt-get -y install python-pip<br>
-#:sudo apt-get -y install python3-pip<br>
+&#35;:sudo apt update<br>
+&#35;:sudo apt upgrade<br>
+&#35;:sudo apt-get -y install python-pip<br>
+&#35;:sudo apt-get -y install python3-pip<br>
 <h4>VI.kaggle-cli installation</h4>
-#:pip install kaggle-cli<br>
+&#35;:pip install kaggle-cli<br>
 <h2>2.dataset download</h2>
-#:kg download -u &lt;your kaggle username&gt; -p &lt;your kaggle password&gt; -c imagenet-object-localization-challenge<br>
+&#35;:kg download -u &lt;your kaggle username&gt; -p &lt;your kaggle password&gt; -c imagenet-object-localization-challenge<br>
 // dataset is about 160G, so it will cost about 1 hour if your instance download speed is around 42.9 MiB/s.<br>
 // let's open another ssh connection to do next step.<br>
 <h2>3.opencv-3.4.0 installation(we will turn on opencv option in yolo project later for better image processing)</h2>
@@ -40,72 +40,72 @@ https://gist.github.com/ashokpant/5c4e9481615f54af4025ab2085f85869#file-cuda_9-0
 <h2>5.cudnn library configuration</h2>
 go to https://developer.nvidia.com/rdp/cudnn-download to download cuDNN v7.0.5 Library for Linux CUDA 9.0<br>
 it's name should be cudnn-9.0-linux-x64-v7.tgz, we use scp command or filezilla to move this package from local machine to remote instance.<br>
-#:scp -i ~/.ssh/gc_rsa Downloads/cudnn-9.0-linux-x64-v7.tgz anynamehere@your google cloud external ip:~/<br>
+&#35;:scp -i ~/.ssh/gc_rsa Downloads/cudnn-9.0-linux-x64-v7.tgz anynamehere@your google cloud external ip:~/<br>
 // come to instance window<br>
-#:tar zxvf cudnn-9.0-linux-x64-v7.tgz<br>
-#:cd cuda<br>
-#:sudo cp include/* /usr/local/cuda-9.0/include/<br>
-#:sudo cp lib64/* /usr/local/cuda-9.0/lib64/<br>
-#:echo 'export PATH=/usr/local/cuda-9.0/bin:$PATH' >> ~/.bashrc<br>
-#:echo 'export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/:$LD_LIBRARY_PATH' >> ~/.bashrc<br>
-#:source ~/.bashrc<br>
+&#35;:tar zxvf cudnn-9.0-linux-x64-v7.tgz<br>
+&#35;:cd cuda<br>
+&#35;:sudo cp include/* /usr/local/cuda-9.0/include/<br>
+&#35;:sudo cp lib64/* /usr/local/cuda-9.0/lib64/<br>
+&#35;:echo 'export PATH=/usr/local/cuda-9.0/bin:$PATH' >> ~/.bashrc<br>
+&#35;:echo 'export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/:$LD_LIBRARY_PATH' >> ~/.bashrc<br>
+&#35;:source ~/.bashrc<br>
 <h2>6.Shutdown instance, add 1 piece of K80 GPU, then boot instance again.</h2>
 ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 // view GPUs detailed info<br>
-#: nvidia-smi<br>
+&#35;: nvidia-smi<br>
 // view the number of CPUs<br>
-#:nproc<br>
+&#35;:nproc<br>
 <h2>7.X11 installatoin both of instance and our local machine, so that we can see our predicted image remotely.</h2>
-#:sudo apt-get install xorg openbox<br>
+&#35;:sudo apt-get install xorg openbox<br>
 // what I need on my mac is XQuartz.<br>
 // install feh, so that we can see any picture remotely.<br>
-#:sudo apt install feh<br>
+&#35;:sudo apt install feh<br>
 // logout from instance, connect it with additional parameter, then test it<br>
-#:ssh -Y -i ~/.ssh/gc_rsa anynamehere@your google cloud external ip<br>
-#:feh darknet/data/dog.jpg<br>
+&#35;:ssh -Y -i ~/.ssh/gc_rsa anynamehere@your google cloud external ip<br>
+&#35;:feh darknet/data/dog.jpg<br>
 <h2>8.Yolo installation</h2>
-#:git clone https://github.com/pjreddie/darknet<br>
-#:cd darknet<br>
-#:make<br>
+&#35;:git clone https://github.com/pjreddie/darknet<br>
+&#35;:cd darknet<br>
+&#35;:make<br>
 <h2>9.test yolov3</h2>
 // Actually we've done a good job until now, but we still can't see expected result if we won't change Makefile a little bit,<br>
 // I haven't figured out the reason, although let's just change it now. <br>
-#:cd darknet<br>
-#:sed -i 's/GPU=./GPU=1/' Makefile<br>
-#:sed -i 's/CUDNN=./CUDNN=0/' Makefile<br>
-#:sed -i 's/OPENCV=./OPENCV=1/' Makefile<br>
-#:sed -i 's/OPENMP=./OPENMP=1/' Makefile<br>
-#:sed -i 's/DEBUG=./DEBUG=0/' Makefile<br>
-#:make<br>
-#:wget https://pjreddie.com/media/files/yolov3.weights<br>
-#:./darknet detector test cfg/coco.data cfg/yolov3.cfg yolov3.weights data/dog.jpg<br>
+&#35;:cd darknet<br>
+&#35;:sed -i 's/GPU=./GPU=1/' Makefile<br>
+&#35;:sed -i 's/CUDNN=./CUDNN=0/' Makefile<br>
+&#35;:sed -i 's/OPENCV=./OPENCV=1/' Makefile<br>
+&#35;:sed -i 's/OPENMP=./OPENMP=1/' Makefile<br>
+&#35;:sed -i 's/DEBUG=./DEBUG=0/' Makefile<br>
+&#35;:make<br>
+&#35;:wget https://pjreddie.com/media/files/yolov3.weights<br>
+&#35;:./darknet detector test cfg/coco.data cfg/yolov3.cfg yolov3.weights data/dog.jpg<br>
 <h2>10.Now let's come to the main part - train yolo on kaggle imagenet object localization</h2>
 <h4>I.training data preprocessing.</h4>
-#:cd ~<br>
-#:tar zxvf imagenet_object_localization.tar.gz<br>
+&#35;:cd ~<br>
+&#35;:tar zxvf imagenet_object_localization.tar.gz<br>
 // delete package so that we'll have enough disk space.<br>
-#:rm imagenet_object_localization.tar.gz<br>
+&#35;:rm imagenet_object_localization.tar.gz<br>
 // view disk space info.<br>
-#: df -h<br>
+&#35;: df -h<br>
 // Data preparation<br>
-#:unzip LOC_synset_mapping.txt.zip<br>
-#:mkdir ILSVRC/Data/CLS-LOC/train/images<br>
-#:mv ILSVRC/Data/CLS-LOC/train/n* ILSVRC/Data/CLS-LOC/train/images/<br>
-#:mv ILSVRC/Data/CLS-LOC/val/ ILSVRC/Data/CLS-LOC/images<br>
-#:mkdir ILSVRC/Data/CLS-LOC/val/<br>
-#:mv ILSVRC/Data/CLS-LOC/images ILSVRC/Data/CLS-LOC/val/images<br>
-#:git clone https://github.com/mingweihe/ImageNet<br>
-#:pip3 install pandas<br>
-#:pip3 install pathlib<br>
-#:cd ImageNet<br>
+&#35;:unzip LOC_synset_mapping.txt.zip<br>
+&#35;:mkdir ILSVRC/Data/CLS-LOC/train/images<br>
+&#35;:mv ILSVRC/Data/CLS-LOC/train/n* ILSVRC/Data/CLS-LOC/train/images/<br>
+&#35;:mv ILSVRC/Data/CLS-LOC/val/ ILSVRC/Data/CLS-LOC/images<br>
+&#35;:mkdir ILSVRC/Data/CLS-LOC/val/<br>
+&#35;:mv ILSVRC/Data/CLS-LOC/images ILSVRC/Data/CLS-LOC/val/images<br>
+&#35;:git clone https://github.com/mingweihe/ImageNet<br>
+&#35;:pip3 install pandas<br>
+&#35;:pip3 install pathlib<br>
+&#35;:cd ImageNet<br>
 // generating all training formatted label files costs about 20 minutes<br>
-#:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/train ../ILSVRC/Data/CLS-LOC/train/labels 1<br>
+&#35;:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/train ../ILSVRC/Data/CLS-LOC/train/labels 1<br>
 // generating all validation formatted label files<br>
-#:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/val ../ILSVRC/Data/CLS-LOC/val/labels 0<br>
-#:cd ~<br>
-#:find `pwd`/ILSVRC/Data/CLS-LOC/train/labels/ -name \*.txt > darknet/data/inet.train.list<br>
-#:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.train.list<br>
-#:sed -i 's/labels/images/g' darknet/data/inet.train.list<br>
+&#35;:python3 generate_labels.py ../LOC_synset_mapping.txt ../ILSVRC/Annotations/CLS-LOC/val ../ILSVRC/Data/CLS-LOC/val/labels 0<br>
+&#35;:cd ~<br>
+&#35;:find `pwd`/ILSVRC/Data/CLS-LOC/train/labels/ -name \*.txt > darknet/data/inet.train.list<br>
+&#35;:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.train.list<br>
+&#35;:sed -i 's/labels/images/g' darknet/data/inet.train.list<br>
 
 &#35;:find `pwd`/ILSVRC/Data/CLS-LOC/val/labels/ -name \*.txt > darknet/data/inet.val.list<br>
 #:sed -i 's/\.txt/\.JPEG/g' darknet/data/inet.val.list<br>
