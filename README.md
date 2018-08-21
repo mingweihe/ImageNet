@@ -4,7 +4,7 @@ yolo:https://pjreddie.com/darknet/yolo/<br>
 nice yolo explanation:https://medium.com/@jonathan_hui/real-time-object-detection-with-yolo-yolov2-28b1b93e2088<br>
 My operation system is Mac OS, although it doesn't matter much, because we do most steps on google cloud.<br>
 Let's do it step by step:<br>
-1.basic environment preparation:<br>
+<h2>1.basic environment preparation:</h2>
 I.Apply a google cloud account, we can have a $300 credit acount if it's out first time to do it.<br>
 II.Create a ubuntu 16.04 compute engine instance on google cloud, with 500G SSD disk, 4 cores' cpu and, 15G memories. <br>
 we will change it a little bit later coz GPU/CPU extention or other reasons, but now it's enough.<br>
