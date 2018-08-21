@@ -57,7 +57,7 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2
 // install feh, so that we can see any picture remotely.<br>
 #:sudo apt install feh<br>
 // logout from instance, connect it with additional parameter, then test it<br>
-#ssh -Y -i ~/.ssh/gc_rsa anynamehere@your google cloud external ip
+#:ssh -Y -i ~/.ssh/gc_rsa anynamehere@your google cloud external ip<br>
 #:feh darknet/data/dog.jpg<br>
 <h2>8.Yolo installation</h2>
 #:git clone https://github.com/pjreddie/darknet<br>
