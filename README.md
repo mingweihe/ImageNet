@@ -5,12 +5,12 @@ nice yolo explanation:https://medium.com/@jonathan_hui/real-time-object-detectio
 My operation system is Mac OS, although it doesn't matter much, because we do most steps on google cloud.<br>
 Let's do it step by step:<br>
 <h2>1.basic environment preparation:</h2>
-I.Apply a google cloud account, we can have a $300 credit acount if it's out first time to do it.<br>
-II.Create a ubuntu 16.04 compute engine instance on google cloud, with 500G SSD disk, 4 cores' cpu and, 15G memories. <br>
+<h3>I.Apply a google cloud account, we can have a $300 credit acount if it's out first time to do it.</h3>
+<h3>II.Create a ubuntu 16.04 compute engine instance on google cloud, with 500G SSD disk, 4 cores' cpu and, 15G memories. </h3>
 we will change it a little bit later coz GPU/CPU extention or other reasons, but now it's enough.<br>
-III.Apply quotas increasing on Nvidia tesla K80/P100/V100, coz we don't have permission to use gpu default. <br>
+<h3>III.Apply quotas increasing on Nvidia tesla K80/P100/V100, coz we don't have permission to use gpu default. </h3>
 GPUs cost credit so fast, so we can choose it by needed. For me, I just increase 1 K80s for test, 4 P100s for training our model, haven't tried on V100 yet.<br>
-IV.SSH connection by RSA keys.<br>
+<h3>IV.SSH connection by RSA keys.</h3>
 #:ssh-keygen -t rsa -f ~/.ssh/gc_rsa -C anynamehere<br>
 No pass word is easy for login.<br>
 #:cd ~/.ssh<br>
@@ -19,10 +19,10 @@ then go to google cloud, copy everything in gc_rsa.pub to ubuntu instance SSH ke
 #:chmod 400 gc_rsa<br>
 #:ssh -i gc_rsa anynamehere@your google cloud external ip<br>
 we can also connect by 'FileZilla', no more words here.<br>
-V.pip installation<br>
+<h3>V.pip installation</h3>
 #:sudo apt-get -y install python-pip<br>
 #:sudo apt-get -y install python3-pip<br>
-VI.kaggle-cli installation<br>
+<h3>VI.kaggle-cli installation</h3>
 #:pip install kaggle-cli<br>
 <h2>2.dataset download</h2>
 #:kg download -u <username> -p <password> -c imagenet-object-localization-challenge<br>
