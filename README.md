@@ -7,7 +7,7 @@ Let's do it step by step:<br>
 <h2>1.basic environment preparation:</h2>
 <h4>I.Apply a google cloud account.</h4>
 ps:Google provide $300 credit trial time for first time sign up account.
-<h4>II.Create a ubuntu 16.04 compute engine instance on google cloud, with 500G SSD disk, 4 cores' cpu and, 15G memories. </h4>
+<h4>II.Create a ubuntu 16.04 compute engine instance on google cloud, with 450G SSD disk, 4 cores' cpu and, 15G memories. </h4>
 we will change it a little bit later coz GPU/CPU extention or other reasons, but now it's enough.<br>
 <h4>III.Apply quotas increasing on Nvidia tesla K80/P100/V100, coz we don't have permission to use gpu default. </h4>
 GPUs cost credit so fast, so we can choose it by needed. For me, I just increase 1 K80s for test, 4 P100s for training our model, haven't tried on V100 yet.<br>
@@ -24,7 +24,6 @@ we can also connect by 'FileZilla', no more words here.<br>
 #:sudo apt update<br>
 #:sudo apt upgrade<br>
 #:sudo apt-get -y install python-pip<br>
-#:pip install --upgrade pip<br>
 #:sudo apt-get -y install python3-pip<br>
 <h4>VI.kaggle-cli installation</h4>
 #:pip install kaggle-cli<br>
