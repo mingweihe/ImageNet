@@ -118,9 +118,9 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 <h4>IV.Traning</h4>
 &#35;:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74<br>
 // we can also restart training from a checkpoint:<br>
-&#35;:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg backup/yolov3.backup<br>
+&#35;:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg backup/yolov3-ILSVRC.backup<br>
 <h4>V.Traininguse with multiple GPUs</h4>
-// shutdown instance, configure GPU from 1 piece of K80 to 4 piece of P100, with 8 CPUs.<br>
+// shutdown instance, increase number of GPUs from 1 piece's K80 to 4 pieces' P100, with 8 CPUs.<br>
 // boot instance, start training using following command<br>
 &#35;:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74 -gpus 0,1,2,3<br>
 // continue from checkpoints we can replace darknet53.conv.74 with backup file.<br>
