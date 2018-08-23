@@ -112,21 +112,18 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 <h4>II.pretrained weights preparation.</h4>
 &#35;:cd darknet<br>
 &#35;:wget https://pjreddie.com/media/files/darknet53.conv.74<br>
-<h4>III.cfg files preparation</h4>
-&#35;:cp ~/ImageNet/yolov3-ILSVRC.cfg cfg/<br>
-&#35;:cp ~/ImageNet/ILSVRC.data cfg/<br>
-<h4>IV.Traning</h4>
-&#35;:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74<br>
+<h4>III.Traning</h4>
+&#35;:./darknet detector train ~/ImageNet/ILSVRC.data ~/ImageNet/yolov3-ILSVRC.cfg darknet53.conv.74<br>
 // we can also restart training from a checkpoint:<br>
-&#35;:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg backup/yolov3-ILSVRC.backup<br>
-<h4>V.Traininguse with multiple GPUs</h4>
+&#35;:./darknet detector train ~/ImageNet/ILSVRC.data ~/ImageNet/yolov3-ILSVRC.cfg backup/yolov3-ILSVRC.backup<br>
+<h4>IV.Traininguse with multiple GPUs</h4>
 // shutdown instance, increase number of GPUs from 1 piece's K80 to 4 pieces' P100, with 8 CPUs.<br>
 // boot instance, start training using following command<br>
-&#35;:./darknet detector train cfg/ILSVRC.data cfg/yolov3-ILSVRC.cfg darknet53.conv.74 -gpus 0,1,2,3<br>
+&#35;:./darknet detector train ~/ImageNet/ILSVRC.data ~/ImageNet/yolov3-ILSVRC.cfg darknet53.conv.74 -gpus 0,1,2,3<br>
 // continue from checkpoints we can replace darknet53.conv.74 with backup file.<br>
+<h4>V.</h4>
 <h4>VI.</h4>
 <h4>VII.</h4>
-<h4>VIII.</h4>
 <h2>11.Prediction</h2>
 &#35;:<br>
 <h2>12.transfer predcitions to CSV file.</h2>
