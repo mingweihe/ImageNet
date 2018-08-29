@@ -116,14 +116,20 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 &#35;:./darknet detector train ~/ImageNet/ILSVRC.data ~/ImageNet/yolov3-ILSVRC.cfg darknet53.conv.74<br>
 // we can also restart training from a checkpoint:<br>
 &#35;:./darknet detector train ~/ImageNet/ILSVRC.data ~/ImageNet/yolov3-ILSVRC.cfg backup/yolov3-ILSVRC.backup<br>
-<h4>IV.Traininguse with multiple GPUs</h4>
+<h4>IV.Training with multiple GPUs</h4>
 // shutdown instance, increase number of GPUs from 1 piece's K80 to 4 pieces' P100, with 8 CPUs.<br>
 // boot instance, start training using following command<br>
-&#35;:./darknet detector train ~/ImageNet/ILSVRC.data ~/ImageNet/yolov3-ILSVRC.cfg darknet53.conv.74 -gpus 0,1,2,3<br>
+&#35;:./darknet detector train ~/ImageNet/ILSVRC.data ~/ImageNet/yolov3-ILSVRC.cfg backup/yolov3-ILSVRC.backup -gpus 0,1,2,3<br>
 // continue from checkpoints we can replace darknet53.conv.74 with backup file.<br>
-<h4>V.</h4>
-<h4>VI.</h4>
-<h4>VII.</h4>
+<h4>V.Training without ssh connection</h4>
+&#35;:screen<br>
+&#35;:./darknet detector train ~/ImageNet/ILSVRC.data ~/ImageNet/yolov3-ILSVRC.cfg backup/yolov3-ILSVRC.backup -gpus 0,1,2,3<br>
+// press Keys of &lt;Ctrl+a&gt;<br>
+// then press &lt;d&gt; key<br>
+// now we have our task done detached from our local machine<br>
+// If we wanna put task back, we can connect ssh, then:<br>
+&#35;:screen -r<br>
+// For more detailed instruction, please google "linux screen detach".<br>
 <h2>11.Prediction and transfer predictions into CSV file.</h2>
 &#35;:unzip LOC_sample_submission.csv.zip<br>
 &#35;:mkdir ~/submissions<br>
