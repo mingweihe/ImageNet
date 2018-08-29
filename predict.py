@@ -135,8 +135,17 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45):
         for i in range(meta.classes):
             if dets[j].prob[i] > 0:
                 b = dets[j].bbox
-                res.append((meta.names[i], dets[j].prob[i], 
-                            (int(b.x-b.w/2), int(b.y-b.h/2), int(b.x+b.w/2), int(b.y+b.h/2))))
+                b.w=im.w if b.w > im.w else b.w
+                b.h=im.h if b.h > im.h else b.h
+                xmin=int(b.x-b.w/2)
+                xmin=0 if xmin < 0 else xmin
+                ymin=int(b.y-b.h/2)
+                ymin=0 if ymin < 0 else ymin
+                xmax=int(b.x+b.w/2)
+                xmax=im.w if xmax > im.w else xmax
+                ymax=int(b.y+b.h/2)
+                ymax=im.h if ymax > im.h else ymax
+                res.append((meta.names[i], dets[j].prob[i], (xmin, ymin, xmax, ymax)))
     res = sorted(res, key=lambda x: -x[1])
     free_image(im)
     free_detections(dets, num)
