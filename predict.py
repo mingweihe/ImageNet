@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
 from ctypes import *
 import math
 import random
@@ -39,7 +33,6 @@ class DETECTION(Structure):
                 ("objectness", c_float),
                 ("sort_class", c_int)]
 
-
 class IMAGE(Structure):
     _fields_ = [("w", c_int),
                 ("h", c_int),
@@ -50,10 +43,7 @@ class METADATA(Structure):
     _fields_ = [("classes", c_int),
                 ("names", POINTER(c_char_p))]
 
-    
-
-lib = CDLL("../libdarknet.so", RTLD_GLOBAL)
-# lib = CDLL("libdarknet.so", RTLD_GLOBAL)
+lib = CDLL("~/darknet/libdarknet.so", RTLD_GLOBAL)
 lib.network_width.argtypes = [c_void_p]
 lib.network_width.restype = c_int
 lib.network_height.argtypes = [c_void_p]
@@ -137,7 +127,7 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45):
     predict_image(net, im)
     dets = get_network_boxes(net, im.w, im.h, thresh, hier_thresh, None, 0, pnum)
     num = pnum[0]
-    if (nms): do_nms_obj(dets, num, meta.classes, nms);
+    if (nms): do_nms_obj(dets, num, meta.classes, nms)
 
     res = []
     for j in range(num):
@@ -151,25 +141,18 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45):
     free_detections(dets, num)
     return res
 
-
-# In[2]:
-
-
-# prediction configuration
-names=pd.read_csv("/Users/hemingwei/Documents/MUM/ML/kaggle/ImageNet/LOC_synset_mapping.txt", sep='\t', header=None)
+# parameters configuration
+names=pd.read_csv("~/LOC_synset_mapping.txt", sep='\t', header=None)
 names[1]=names[0].str[10:]
 names[0]=names[0].str[0:9]
 ids=names.loc[:,0]
-cfg_path="../cfg/yolov3-ILSVRC.cfg".encode()
-weight_path="/Users/hemingwei/Documents/MUM/ML/kaggle/ImageNet/backup_weights/yolov3-ILSVRC.backup".encode()
-meta_path="../cfg/ILSVRC.data".encode()
+cfg_path="~/ImageNet/yolov3-ILSVRC.cfg".encode()
+weight_path="~/darknet/backup/yolov3-ILSVRC.backup".encode()
+meta_path="~/ImageNet/ILSVRC.data".encode()
 net = load_net(cfg_path, weight_path, 0)
 meta = load_meta(meta_path)
 
-
-# In[3]:
-
-
+# encapsulate prediction to a single function
 def prediction(path):
     r = detect(net, meta, str(path).encode(), .01)
     # format prediction
@@ -180,29 +163,9 @@ def prediction(path):
         res=' '.join([i[0] for i in pred[:5]])
     return res
 
+# predict for all test data
+sub=pd.read_csv("~/LOC_sample_submission.csv", sep=',')
+sub['PredictionString']=prediction('~/ILSVRC/Data/CLS-LOC/test/'+sub['ImageId']+'.JPEG')
 
-# In[4]:
-
-
-prediction('../data/dog.jpg')
-
-
-# In[5]:
-
-
-# prediction and generate result file for submission
-sub=pd.read_csv("/Users/hemingwei/Documents/MUM/ML/kaggle/ImageNet/LOC_sample_submission.csv", sep=',')
-sub['PredictionString']=prediction('/Users/hemingwei/Documents/MUM/ML/kaggle/ImageNet/Data/'+sub['ImageId']+'.JPEG')
-
-
-# In[6]:
-
-
-sub.head()
-
-
-# In[7]:
-
-
-sub.to_csv("/Users/hemingwei/Documents/MUM/ML/kaggle/ImageNet/subs/sub_"+str(int(time.time()*(10e5)))+".csv", index=False)
-
+# generate result file for submission
+sub.to_csv("~/submissions/sub_"+str(int(time.time()*(10e5)))+".csv", index=False)

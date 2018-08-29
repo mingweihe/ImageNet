@@ -124,21 +124,11 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 <h4>V.</h4>
 <h4>VI.</h4>
 <h4>VII.</h4>
-<h2>11.Prediction</h2>
-&#35;:<br>
-<h2>12.transfer predcitions to CSV file.</h2>
-<h2>13.submit our predictions.</h2>
+<h2>11.Prediction and transfer predictions into CSV file.</h2>
+&#35;:unzip LOC_sample_submission.csv.zip<br>
+&#35;:mkdir ~/submissions<br>
+&#35;:python3 ~/ImageNet/predict.py<br>
+<h2>12.submit our predictions.</h2>
+&#35;kg<br>
+(you can also submit it using a web browser on kaggle website.)<br>
 Good luck and thanks for your attention.<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
