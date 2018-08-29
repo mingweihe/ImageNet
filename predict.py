@@ -167,8 +167,10 @@ def prediction(path):
 # predict for all test data
 sub=pd.read_csv(expanduser("~") + "/LOC_sample_submission.csv", sep=',')
 for i in range(100000):
-    sub.loc[i, 'PredictionString']=prediction\
-    (expanduser("~") + "/ILSVRC/Data/CLS-LOC/test/ILSVRC2012_test_"+str("%08d" % (i+1))+'.JPEG')
+    img=expanduser("~") + "/ILSVRC/Data/CLS-LOC/test/ILSVRC2012_test_"+str("%08d" % (i+1))+'.JPEG'
+    res=prediction(img)
+    sub.loc[i, 'PredictionString']=res
+    print(img,":\n", res)
 
 # generate result file for submission
 sub.to_csv(expanduser("~") + "/submissions/sub_"+str(int(time.time()*(10e5)))+".csv", index=False)
