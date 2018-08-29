@@ -3,6 +3,7 @@ import math
 import random
 import pandas as pd
 import time
+from os.path import expanduser
 
 def sample(probs):
     s = sum(probs)
@@ -43,7 +44,7 @@ class METADATA(Structure):
     _fields_ = [("classes", c_int),
                 ("names", POINTER(c_char_p))]
 
-lib = CDLL("~/darknet/libdarknet.so", RTLD_GLOBAL)
+lib = CDLL(expanduser("~") + "/darknet/libdarknet.so", RTLD_GLOBAL)
 lib.network_width.argtypes = [c_void_p]
 lib.network_width.restype = c_int
 lib.network_height.argtypes = [c_void_p]
