@@ -164,7 +164,8 @@ meta = load_meta(meta_path)
 
 # encapsulate prediction to a single function
 def prediction(path):
-    r = detect(net, meta, str(path).encode(), .01)
+    # r = detect(net, meta, str(path).encode(), .01)
+    r = detect(net, meta, str(path).encode(), .005)
     # format prediction
     res=str()
     pred=[[str(names.loc[names[0]==str(val[0], "utf-8")[0:9]].index[0]+1) 
