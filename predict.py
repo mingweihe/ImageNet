@@ -143,13 +143,13 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45):
     return res
 
 # parameters configuration
-names=pd.read_csv("~/LOC_synset_mapping.txt", sep='\t', header=None)
+names=pd.read_csv(expanduser("~") + "/LOC_synset_mapping.txt", sep='\t', header=None)
 names[1]=names[0].str[10:]
 names[0]=names[0].str[0:9]
 ids=names.loc[:,0]
-cfg_path="~/ImageNet/yolov3-ILSVRC.cfg".encode()
-weight_path="~/darknet/backup/yolov3-ILSVRC.backup".encode()
-meta_path="~/ImageNet/ILSVRC.data".encode()
+cfg_path=expanduser("~") + "/ImageNet/yolov3-ILSVRC.cfg".encode()
+weight_path=expanduser("~") + "/darknet/backup/yolov3-ILSVRC.backup".encode()
+meta_path=expanduser("~") + "/ImageNet/ILSVRC.data".encode()
 net = load_net(cfg_path, weight_path, 0)
 meta = load_meta(meta_path)
 
@@ -165,8 +165,8 @@ def prediction(path):
     return res
 
 # predict for all test data
-sub=pd.read_csv("~/LOC_sample_submission.csv", sep=',')
-sub['PredictionString']=prediction('~/ILSVRC/Data/CLS-LOC/test/'+sub['ImageId']+'.JPEG')
+sub=pd.read_csv(expanduser("~") + "/LOC_sample_submission.csv", sep=',')
+sub['PredictionString']=prediction(expanduser("~") + "/ILSVRC/Data/CLS-LOC/test/"+sub['ImageId']+'.JPEG')
 
 # generate result file for submission
-sub.to_csv("~/submissions/sub_"+str(int(time.time()*(10e5)))+".csv", index=False)
+sub.to_csv(expanduser("~") + "/submissions/sub_"+str(int(time.time()*(10e5)))+".csv", index=False)
