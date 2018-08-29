@@ -147,9 +147,9 @@ names=pd.read_csv(expanduser("~") + "/LOC_synset_mapping.txt", sep='\t', header=
 names[1]=names[0].str[10:]
 names[0]=names[0].str[0:9]
 ids=names.loc[:,0]
-cfg_path=expanduser("~") + "/ImageNet/yolov3-ILSVRC.cfg".encode()
-weight_path=expanduser("~") + "/darknet/backup/yolov3-ILSVRC.backup".encode()
-meta_path=expanduser("~") + "/ImageNet/ILSVRC.data".encode()
+cfg_path=(expanduser("~") + "/ImageNet/yolov3-ILSVRC.cfg").encode()
+weight_path=(expanduser("~") + "/darknet/backup/yolov3-ILSVRC.backup").encode()
+meta_path=(expanduser("~") + "/ImageNet/ILSVRC.data").encode()
 net = load_net(cfg_path, weight_path, 0)
 meta = load_meta(meta_path)
 
