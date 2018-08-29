@@ -131,4 +131,7 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 <h2>12.submit our predictions.</h2>
 &#35;kg submit &lt;submission-file&gt; -u &lt;your kaggle username&gt; -p &lt;your kaggle password&gt; -c imagenet-object-localization-challenge -m "my submission"<br>
 (optional way is submitting it on kaggle website by using a web browser.)<br>
-Good luck and thanks for attentions.<br>
+<h2>13.Accuracy improvement.</h2>
+<h4>I.Cross-validation & Ensembling.</h4>
+<h4>II.Training validation dataset for a few more epochs before final submission.</h4>
+Good luck, thanks for attentions.<br>
