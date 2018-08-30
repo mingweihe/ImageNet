@@ -136,7 +136,7 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 &#35;:python3 ~/ImageNet/predict.py<br>
 <h2>12.Submit our predictions.</h2>
 &#35;kg submit &lt;submission-file&gt; -u &lt;your kaggle username&gt; -p &lt;your kaggle password&gt; -c imagenet-object-localization-challenge -m "my submission"<br>
-(optional way is submitting it on kaggle website by using a web browser.)<br>
+(optional way is submitting it on kaggle website by using any web browser.)<br>
 <h2>13.Accuracy improvement.</h2>
 <h4>I.Cross-validation & Ensembling.</h4>
 Hope you guys could complete it.<br>
