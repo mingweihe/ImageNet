@@ -4,7 +4,7 @@ yolo:https://pjreddie.com/darknet/yolo/<br>
 nice yolo explanation:https://medium.com/@jonathan_hui/real-time-object-detection-with-yolo-yolov2-28b1b93e2088<br>
 My operation system is Mac OS, although it doesn't matter much, because we do most steps on google cloud.<br>
 Let's do it step by step:<br>
-<h2>1.basic environment preparation:</h2>
+<h2>1.Basic environment preparation:</h2>
 <h4>I.Apply a google cloud account.</h4>
 ps:Google provide $300 credit trial time for first time sign up account.
 <h4>II.Create a ubuntu 16.04 compute engine instance on google cloud, with 400G SSD disk, 4 cores' cpu and, 15G memories. </h4>
@@ -27,17 +27,17 @@ we can also connect by 'FileZilla', no more words here.<br>
 &#35;:sudo apt-get -y install python3-pip<br>
 <h4>VI.kaggle-cli installation</h4>
 &#35;:pip install kaggle-cli<br>
-<h2>2.dataset download</h2>
+<h2>2.Dataset download</h2>
 &#35;:kg download -u &lt;your kaggle username&gt; -p &lt;your kaggle password&gt; -c imagenet-object-localization-challenge<br>
 // dataset is about 160G, so it will cost about 1 hour if your instance download speed is around 42.9 MiB/s.<br>
 // let's open another ssh connection to do next step when it's doing the download process.<br>
-<h2>3.opencv-3.4.0 installation(we will turn on opencv option in yolo project later for better image processing)</h2>
+<h2>3.Opencv-3.4.0 installation(we will turn on opencv option in yolo project later for better image processing)</h2>
 execute all the steps in the following url.<br>
 http://www.python36.com/how-to-install-opencv340-on-ubuntu1604/<br>
-<h2>4.cuda 9.0 with cudnn 7.0 installation</h2>
+<h2>4.Cuda 9.0 with cudnn 7.0 installation</h2>
 we can use the fallowing bash script, download it and execute it in instance.<br>
 https://gist.github.com/ashokpant/5c4e9481615f54af4025ab2085f85869#file-cuda_9-0_cudnn_7-0-sh<br>
-<h2>5.cudnn library configuration</h2>
+<h2>5.Cudnn library configuration</h2>
 go to https://developer.nvidia.com/rdp/cudnn-download to download cuDNN v7.0.5 Library for Linux CUDA 9.0<br>
 it's name should be cudnn-9.0-linux-x64-v7.tgz, we use scp command or filezilla to move this package from local machine to remote instance.<br>
 &#35;:scp -i ~/.ssh/gc_rsa Downloads/cudnn-9.0-linux-x64-v7.tgz anynamehere@your google cloud external ip:~/<br>
@@ -67,7 +67,7 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 &#35;:git clone https://github.com/pjreddie/darknet<br>
 &#35;:cd darknet<br>
 &#35;:make<br>
-<h2>9.test yolov3</h2>
+<h2>9.Test yolov3</h2>
 // Actually we've done a good job until now, but we still can't see expected result if we won't change Makefile a little bit,<br>
 // I haven't figured out the reason, although let's just change it now. <br>
 &#35;:cd darknet<br>
@@ -134,10 +134,11 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 &#35;:unzip LOC_sample_submission.csv.zip<br>
 &#35;:mkdir ~/submissions<br>
 &#35;:python3 ~/ImageNet/predict.py<br>
-<h2>12.submit our predictions.</h2>
+<h2>12.Submit our predictions.</h2>
 &#35;kg submit &lt;submission-file&gt; -u &lt;your kaggle username&gt; -p &lt;your kaggle password&gt; -c imagenet-object-localization-challenge -m "my submission"<br>
 (optional way is submitting it on kaggle website by using a web browser.)<br>
 <h2>13.Accuracy improvement.</h2>
 <h4>I.Cross-validation & Ensembling.</h4>
+Hope you guys could complete it.<br>
 <h4>II.Training validation dataset for a few more epochs before final submission.</h4>
 Good luck, thanks for attentions.<br>

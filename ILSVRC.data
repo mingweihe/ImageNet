@@ -1,7 +1,5 @@
 classes= 1000
-#train  = /home/hemingwei/darknet/data/inet.train.list
-train  = /home/hemingwei/darknet/data/inet.val.list
+train  = /home/hemingwei/darknet/data/inet.train.list
 valid = /home/hemingwei/darknet/data/inet.val.list
 names = /home/hemingwei/LOC_synset_mapping.txt
 backup = /home/hemingwei/darknet/backup/
-
