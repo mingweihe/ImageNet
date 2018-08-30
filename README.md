@@ -79,7 +79,7 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 &#35;:make<br>
 &#35;:wget https://pjreddie.com/media/files/yolov3.weights<br>
 &#35;:./darknet detector test cfg/coco.data cfg/yolov3.cfg yolov3.weights data/dog.jpg<br>
-<h2>10.Now let's come to the main part - train yolo on kaggle imagenet object localization</h2>
+<h2>10.Now let's train it.</h2>
 <h4>I.training data preprocessing.</h4>
 &#35;:cd ~<br>
 &#35;:tar zxvf imagenet_object_localization.tar.gz<br>
