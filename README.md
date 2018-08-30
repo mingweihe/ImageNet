@@ -129,7 +129,7 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 // now we have our task done detached from our local machine<br>
 // If we wanna put task back, we can connect ssh, then:<br>
 &#35;:screen -r<br>
-// For more detailed instruction, please google "linux screen detach".<br>
+// For more detailed instruction, just google "linux screen detach".<br>
 <h2>11.Prediction and transfer predictions into CSV file.</h2>
 &#35;:unzip LOC_sample_submission.csv.zip<br>
 &#35;:mkdir ~/submissions<br>
