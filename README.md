@@ -139,6 +139,6 @@ ps:For frugality, we can revise number of cpu cores from 4 to 2<br>
 (optional way is submitting it on kaggle website by using any web browser.)<br>
 <h2>13.Accuracy improvement.</h2>
 <h4>I.Cross-validation & Ensembling.</h4>
-Hope you guys could complete it.<br>
+TODO.<br>
 <h4>II.Training validation dataset for a few more epochs before final submission.</h4>
 Good luck, thanks for attentions.<br>
